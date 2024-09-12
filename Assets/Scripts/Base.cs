@@ -7,13 +7,13 @@ using UnityEngine.UIElements;
 public class Base : MonoBehaviour
 {
     [SerializeField] private float speed;
+    [SerializeField] private Sprite breakIce;
+    [SerializeField] private Sprite Ice;
     private Vector3 director;
     private Camera mainCamera;
     private float limitX;
     private bool canBreak;
     private int touch = 0;
-    [SerializeField] private Sprite breakIce;
-    [SerializeField] private Sprite Ice;
     private GameObject spriteBreakIce;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -51,25 +51,22 @@ public class Base : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
             canBreak = true;
-        //Debug.Log("Cham nhan vat");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("WallLeft")||collision.gameObject.CompareTag("WallRight"))
         {
-            Debug.Log("Da cham");
             if (canBreak)
             {
                 touch++;
             }
             if (touch == 1)
             {
-                Debug.Log("Cham 1 lan");
                 spriteRenderer.sprite = breakIce;
             }
             else if (touch == 2)
             {
-                boxCollider.isTrigger = false;
+                boxCollider.isTrigger = true;
                 Messenger.Broadcast(EventKey.SETPARENTNULL);
                 spriteRenderer.sprite = null;
             }
