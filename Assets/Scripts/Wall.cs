@@ -7,7 +7,7 @@ public class Wall : MonoBehaviour
     private Camera mainCamera;
     [SerializeField] private GameObject BaseGenerate;
     private float posY;
-    private void Start()
+    private void Awake()
     {
         mainCamera = Camera.main;
     }

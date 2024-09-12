@@ -17,14 +17,19 @@ public class Base : MonoBehaviour
     private GameObject spriteBreakIce;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
-    private void Start()
+
+    private void Awake()
     {
         mainCamera = Camera.main;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
+    }
+    
+    private void Start()
+    {
         director = Vector3.right;
         limitX = 1.36f;
         canBreak = false;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        boxCollider = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
