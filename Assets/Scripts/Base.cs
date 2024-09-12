@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Base : MonoBehaviour
 {
@@ -17,22 +13,28 @@ public class Base : MonoBehaviour
     private GameObject spriteBreakIce;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
-    private void Start()
+
+    private void Awake()
     {
         mainCamera = Camera.main;
-        director = Vector3.right;
-        limitX = 1.36f;
-        canBreak = false;
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
-    void Update()
+
+    private void Start()
+    {
+        director = Vector3.right;
+        limitX = 1.36f;
+        canBreak = false;
+    }
+
+    private void Update()
     {
         Move();
         float x = transform.position.x;
         if (x >= limitX)
             director = Vector3.left;
-        else if(x <= limitX*(-1f))
+        else if (x <= limitX * (-1f))
             director = Vector3.right;
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPosition.y > 1f)
@@ -41,25 +43,28 @@ public class Base : MonoBehaviour
             spriteRenderer.sprite = Ice;
             gameObject.SetActive(false);
         }
-
     }
+
     private void Move()
     {
-          transform.position += director * speed * Time.deltaTime;
+        transform.position += director * speed * Time.deltaTime;
     }
+
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
             canBreak = true;
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("WallLeft")||collision.gameObject.CompareTag("WallRight"))
+        if (collision.gameObject.CompareTag("WallLeft") || collision.gameObject.CompareTag("WallRight"))
         {
             if (canBreak)
             {
                 touch++;
             }
+
             if (touch == 1)
             {
                 spriteRenderer.sprite = breakIce;
