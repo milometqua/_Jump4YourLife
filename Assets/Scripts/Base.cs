@@ -8,10 +8,23 @@ public class Base : MonoBehaviour
 {
     [SerializeField] private float speed;
     private Vector3 director;
-    private float limitX = 1.28f;
+    private Camera mainCamera;
+    private float limitX;
+    private bool canBreak;
+    private int touch = 0;
+    [SerializeField] private Sprite breakIce;
+    [SerializeField] private Sprite Ice;
+    private GameObject spriteBreakIce;
+    private SpriteRenderer spriteRenderer;
+    private BoxCollider2D boxCollider;
     private void Start()
     {
+        mainCamera = Camera.main;
         director = Vector3.right;
+        limitX = 1.36f;
+        canBreak = false;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider2D>();
     }
     void Update()
     {
@@ -21,10 +34,45 @@ public class Base : MonoBehaviour
             director = Vector3.left;
         else if(x <= limitX*(-1f))
             director = Vector3.right;
+        Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
+        if (viewportPosition.y > 1f)
+        {
+            boxCollider.isTrigger = false;
+            spriteRenderer.sprite = Ice;
+            gameObject.SetActive(false);
+        }
 
     }
     private void Move()
     {
           transform.position += director * speed * Time.deltaTime;
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Player"))
+            canBreak = true;
+        //Debug.Log("Cham nhan vat");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.CompareTag("WallLeft")||collision.gameObject.CompareTag("WallRight"))
+        {
+            Debug.Log("Da cham");
+            if (canBreak)
+            {
+                touch++;
+            }
+            if (touch == 1)
+            {
+                Debug.Log("Cham 1 lan");
+                spriteRenderer.sprite = breakIce;
+            }
+            else if (touch == 2)
+            {
+                boxCollider.isTrigger = false;
+                Messenger.Broadcast(EventKey.SETPARENTNULL);
+                spriteRenderer.sprite = null;
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
     private float smooth;
+    private float range;
     [SerializeField]private GameObject Player;
     private float playerPos_y;
     private void Awake()
@@ -18,6 +19,15 @@ public class CameraController : MonoBehaviour
     public void Move()
     {
         playerPos_y = Player.GetComponent<Player>().transform.position.y;
-        transform.position = new Vector3(0, playerPos_y - 3, -10);
+        range = transform.position.y;
+        StartCoroutine(Smooth());
+    }
+    IEnumerator Smooth()
+    {
+        while (transform.position.y > playerPos_y-3f)
+        {
+            transform.position = new Vector3(0, range-=0.2f, -10);
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }
