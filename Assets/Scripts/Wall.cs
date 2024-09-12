@@ -1,16 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    private Camera mainCamera;
     [SerializeField] private GameObject BaseGenerate;
+    
+    private Camera mainCamera;
     private float posY;
+
     private void Awake()
     {
         mainCamera = Camera.main;
     }
+
     void Update()
     {
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
@@ -30,7 +31,7 @@ public class Wall : MonoBehaviour
                 transform.position = new Vector3(-2.23f, posY, 0f);
             }
 
-            if(Generator.instance.check == 2)
+            if (Generator.instance.check == 2)
             {
                 Generator.instance.finalWallY = posY - 10.41f;
                 Generator.instance.check = 0;

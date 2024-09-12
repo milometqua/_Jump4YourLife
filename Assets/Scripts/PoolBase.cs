@@ -1,34 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PoolBase : MonoBehaviour
 {
     public static PoolBase Instance;
-    private List<GameObject> basePool = new List<GameObject>();
-    private int ammount = 10;
+
     [SerializeField] private GameObject Base;
+
+    private List<GameObject> basePool = new List<GameObject>();
+    private int amount = 10;
+
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+
         Init();
     }
+
     private void Init()
     {
-        for (int i = 0; i <= ammount; i++)
+        for (int i = 0; i <= amount; i++)
         {
-            GameObject gameObject = Instantiate(Base);
-            gameObject.SetActive(false);
-            basePool.Add(gameObject);
+            GameObject obj = Instantiate(Base);
+            obj.SetActive(false);
+            basePool.Add(obj);
         }
     }
 
     public GameObject GetPool()
     {
-        for (int i = 0; i <= ammount; i++)
+        for (int i = 0; i <= amount; i++)
         {
             if (!basePool[i].activeInHierarchy)
             {
@@ -36,9 +40,10 @@ public class PoolBase : MonoBehaviour
                 return basePool[i];
             }
         }
-        GameObject gameObject = Instantiate(Base);
-        basePool.Add(gameObject);
-        ammount++;
-        return gameObject;
+
+        GameObject obj = Instantiate(Base);
+        basePool.Add(obj);
+        amount++;
+        return obj;
     }
 }

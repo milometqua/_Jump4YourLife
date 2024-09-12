@@ -1,42 +1,44 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private bool jump;
+    private bool isJumped;
     private float y;
     private Rigidbody2D rb;
     private int jumpForce;
-    void OnEnable()
+
+    private void OnEnable()
     {
         Messenger.AddListener(EventKey.SETPARENTNULL, SetParentNull);
     }
-    void OnDisable()
+
+    private void OnDisable()
     {
         Messenger.RemoveListener(EventKey.SETPARENTNULL, SetParentNull); // Always remember to remove this listener
     }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
     private void Start()
     {
-        jump = false;
+        isJumped = false;
         jumpForce = 2;
     }
+
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.up * jumpForce;
             transform.SetParent(null);
-            jump = true;
+            isJumped = true;
         }
     }
-    void OnCollisionEnter2D(Collision2D collision)
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Base"))
         {
@@ -48,20 +50,22 @@ public class Player : MonoBehaviour
             GameController.instance.ShowScore(distance);
             transform.parent = collision.transform;
         }
+
         if (collision.gameObject.CompareTag("EndGame"))
         {
             GameController.instance.EndGame();
         }
     }
 
-    void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Base") && jump)
+        if (collision.gameObject.CompareTag("Base") && isJumped)
         {
             collision.collider.isTrigger = true;
-            jump = false;
+            isJumped = false;
         }
     }
+
     public void SetParentNull()
     {
         transform.SetParent(null);

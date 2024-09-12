@@ -1,13 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Generator : MonoBehaviour
 {
     public static Generator instance;
+    
     [SerializeField] private GameObject basePrefab;
     [SerializeField] private GameObject WallLeft;
     [SerializeField] private GameObject WallRight;
+    
     private int amount;
     private float firstPosY;
     private GameObject finalBase;
@@ -23,6 +23,7 @@ public class Generator : MonoBehaviour
             instance = this;
         }
     }
+
     private void Start()
     {
         steps = false;
@@ -32,6 +33,7 @@ public class Generator : MonoBehaviour
         check = 0;
         Init();
     }
+
     private void Init()
     {
         for (int i = 0; i < amount; i++)
@@ -44,29 +46,31 @@ public class Generator : MonoBehaviour
                 finalWallY = firstPosY;
             }
         }
+
         for (int i = 0; i < 10; i++)
         {
-            GameObject gameObject = PoolBase.Instance.GetPool();
-            gameObject.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), y -= 3.2f, 0);
-            gameObject.transform.rotation = Quaternion.identity;
-            if(i==9) finalBase = gameObject;
+            GameObject obj = PoolBase.Instance.GetPool();
+            obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), y -= 3.2f, 0);
+            obj.transform.rotation = Quaternion.identity;
+            if (i == 9) finalBase = obj;
         }
     }
+
     public void Generate()
     {
-        GameObject gameObject = PoolBase.Instance.GetPool();
-        float finalY = finalBase.transform.position.y;  
-        gameObject.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
-        gameObject.transform.rotation = Quaternion.identity;
+        GameObject obj = PoolBase.Instance.GetPool();
+        float finalY = finalBase.transform.position.y;
+        obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
+        obj.transform.rotation = Quaternion.identity;
         if (steps)
         {
             GameObject gameObject2 = PoolBase.Instance.GetPool();
             finalY = finalBase.transform.position.y;
-            gameObject.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
-            gameObject.transform.rotation = Quaternion.identity;
+            obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
+            obj.transform.rotation = Quaternion.identity;
             finalBase = gameObject2;
             steps = false;
         }
-        else finalBase = gameObject;
+        else finalBase = obj;
     }
 }
