@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        Messenger.AddListener(EventKey.SETPARENTNULL, SetParentNull);
+        Messenger.AddListener(EventKey.SETPARENTNULL, SetParentNull); //Tên sự kiện sai convention,khó nhìn
     }
 
     private void OnDisable()
@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
             transform.parent = collision.transform;
         }
 
-        if (collision.gameObject.CompareTag("EndGame"))
+        if (collision.gameObject.CompareTag("EndGame")) // sửa lại Tag nhé,tên chưa phù hợp
         {
             GameController.instance.EndGame();
         }

@@ -1,6 +1,6 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Generator : MonoBehaviour
+public class Generator : MonoBehaviour // tên class nên cụ thể hơn Generate gì ->Base/BlockGenerate
 {
     public static Generator instance;
     
@@ -8,13 +8,13 @@ public class Generator : MonoBehaviour
     [SerializeField] private GameObject WallLeft;
     [SerializeField] private GameObject WallRight;
     
-    private int amount;
+    private int amount; 
     private float firstPosY;
     private GameObject finalBase;
     public float finalWallY;
-    public int check;
+    public int check; //? đặt tên khó hiểu
     public bool steps;
-    private float y;
+    private float y; //?đặt tên khó hiểu 
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class Generator : MonoBehaviour
     {
         for (int i = 0; i < amount; i++)
         {
-            Instantiate(WallLeft, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0));
+            Instantiate(WallLeft, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0)); // tận dụng ObjectPool chỗ này đi nè em
             Instantiate(WallRight, new Vector3(-2.23f, firstPosY, 0f), Quaternion.identity);
             firstPosY -= 10.41f;
             if (i == amount - 1)
