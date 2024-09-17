@@ -9,7 +9,7 @@ public class Base : MonoBehaviour
     private Camera mainCamera;
     private float limitX;
     private bool canBreak;
-    private int touch = 0; //touch là động từ, biến tên phải là danh từ || tính từ
+    private int isTouch = 0;
     private GameObject spriteBreakIce;
     private SpriteRenderer spriteRenderer;
     private BoxCollider2D boxCollider;
@@ -34,7 +34,7 @@ public class Base : MonoBehaviour
         float x = transform.position.x;
         if (x >= limitX)
             director = Vector3.left;
-        else if (x <= -limitX) //kì nhỉ
+        else if (x <= -limitX) //kì nhỉ :((
             director = Vector3.right;
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPosition.y > 1f)
@@ -62,14 +62,14 @@ public class Base : MonoBehaviour
         {
             if (canBreak)
             {
-                touch++;
+                isTouch++;
             }
 
-            if (touch == 1)
+            if (isTouch == 1)
             {
                 spriteRenderer.sprite = breakIce;
             }
-            else if (touch == 2)
+            else if (isTouch == 2)
             {
                 boxCollider.isTrigger = true;
                 Messenger.Broadcast(EventKey.SETPARENTNULL);

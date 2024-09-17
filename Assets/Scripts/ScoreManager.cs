@@ -33,7 +33,8 @@ public class ScoreManager : MonoBehaviour
 
 
     //Solution:
-    //class ScoreManager này em só thể để là static cũng được, có biến Score,hàm Set hàm Add, thậm chí sau có thể có hàm Save nữa    //private static int Score;
+    //class ScoreManager này em só thể để là static cũng được, có biến Score,hàm Set hàm Add, thậm chí sau có thể có hàm Save nữa    
+    //private static int Score;
   
     //public static void AddScore(int amount)
     //{

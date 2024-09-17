@@ -46,8 +46,8 @@ public class Player : MonoBehaviour
         {
             float distance = transform.position.y - CameraController.instance.transform.position.y;
             if (distance < -3f)
-                Generator.instance.steps = true;
-            Generator.instance.Generate();
+                Base_WallGenerate.instance.steps = true;
+            Base_WallGenerate.instance.Generate();
             CameraController.instance.Move();
             GameController.instance.ShowScore(distance);
             transform.parent = collision.transform;

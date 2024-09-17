@@ -1,20 +1,19 @@
 ﻿using UnityEngine;
 
-public class Generator : MonoBehaviour // tên class nên cụ thể hơn Generate gì ->Base/BlockGenerate
+public class Base_WallGenerate : MonoBehaviour
 {
-    public static Generator instance;
-    
+    public static Base_WallGenerate instance;
     [SerializeField] private GameObject basePrefab;
     [SerializeField] private GameObject WallLeft;
     [SerializeField] private GameObject WallRight;
     
-    private int amount; 
+    private int amountWall; 
     private float firstPosY;
     private GameObject finalBase;
     public float finalWallY;
-    public int check; //? đặt tên khó hiểu
+    public int numWallOutCam;
     public bool steps;
-    private float y; //?đặt tên khó hiểu 
+    private float posY_Base;
 
     private void Awake()
     {
@@ -27,21 +26,21 @@ public class Generator : MonoBehaviour // tên class nên cụ thể hơn Genera
     private void Start()
     {
         steps = false;
-        y = 2.08f;
+        posY_Base = 2.08f;
         firstPosY = 3f;
-        amount = 3;
-        check = 0;
+        amountWall = 3;
+        numWallOutCam = 0;
         Init();
     }
 
     private void Init()
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i < amountWall; i++)
         {
-            Instantiate(WallLeft, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0)); // tận dụng ObjectPool chỗ này đi nè em
+            Instantiate(WallLeft, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0));
             Instantiate(WallRight, new Vector3(-2.23f, firstPosY, 0f), Quaternion.identity);
             firstPosY -= 10.41f;
-            if (i == amount - 1)
+            if (i == amountWall - 1)
             {
                 finalWallY = firstPosY;
             }
@@ -50,7 +49,7 @@ public class Generator : MonoBehaviour // tên class nên cụ thể hơn Genera
         for (int i = 0; i < 10; i++)
         {
             GameObject obj = PoolBase.Instance.GetPool();
-            obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), y -= 3.2f, 0);
+            obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), posY_Base -= 3.2f, 0);
             obj.transform.rotation = Quaternion.identity;
             if (i == 9) finalBase = obj;
         }

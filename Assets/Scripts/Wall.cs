@@ -17,24 +17,23 @@ public class Wall : MonoBehaviour
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPosition.y > 1.8f)
         {
-            posY = Generator.instance.finalWallY;
-            //Debug.Log(posY);
+            posY = Base_WallGenerate.instance.finalWallY;
             if (gameObject.CompareTag("WallLeft"))
             {
-                Generator.instance.check++;
+                Base_WallGenerate.instance.numWallOutCam++;
                 transform.position = new Vector3(2.23f, posY, 0f);
             }
 
             if (gameObject.CompareTag("WallRight"))
             {
-                Generator.instance.check++;
+                Base_WallGenerate.instance.numWallOutCam++;
                 transform.position = new Vector3(-2.23f, posY, 0f);
             }
 
-            if (Generator.instance.check == 2)
+            if (Base_WallGenerate.instance.numWallOutCam == 2)
             {
-                Generator.instance.finalWallY = posY - 10.41f;
-                Generator.instance.check = 0;
+                Base_WallGenerate.instance.finalWallY = posY - 10.41f;
+                Base_WallGenerate.instance.numWallOutCam = 0;
             }
         }
     }
