@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     private float y;
     private Rigidbody2D rb;
     private int jumpForce;
+    private Animator anim;
 
     private void OnEnable()
     {
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -33,7 +35,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             rb.velocity = Vector2.up * jumpForce;
-            transform.SetParent(null);
+            SetParentNull();
             isJumped = true;
         }
     }
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour
             CameraController.instance.Move();
             GameController.instance.ShowScore(distance);
             transform.parent = collision.transform;
+            anim.SetBool("Jump", false);
         }
 
         if (collision.gameObject.CompareTag("EndGame")) // sửa lại Tag nhé,tên chưa phù hợp
@@ -69,5 +72,6 @@ public class Player : MonoBehaviour
     public void SetParentNull()
     {
         transform.SetParent(null);
+        anim.SetBool("Jump", true);
     }
 }
