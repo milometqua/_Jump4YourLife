@@ -10,12 +10,12 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        Messenger.AddListener(EventKey.SETPARENTNULL, SetParentNull); //Tên sự kiện sai convention,khó nhìn
+        Messenger.AddListener(EventKey.SetParentNull, SetParentNull); //Tên sự kiện sai convention,khó nhìn
     }
 
     private void OnDisable()
     {
-        Messenger.RemoveListener(EventKey.SETPARENTNULL, SetParentNull); // Always remember to remove this listener
+        Messenger.RemoveListener(EventKey.SetParentNull, SetParentNull); // Always remember to remove this listener
     }
 
     private void Awake()
@@ -46,15 +46,19 @@ public class Player : MonoBehaviour
         {
             float distance = transform.position.y - CameraController.instance.transform.position.y;
             if (distance < -3f)
+            {
                 Base_WallGenerate.instance.steps = true;
+                ScoreManager.AddScore(2);
+            }
+            else ScoreManager.AddScore(1);
             Base_WallGenerate.instance.Generate();
             CameraController.instance.Move();
-            GameController.instance.ShowScore(distance);
+            //GameController.instance.ShowScore(distance);
             transform.parent = collision.transform;
             anim.SetBool("Jump", false);
         }
 
-        if (collision.gameObject.CompareTag("EndGame")) // sửa lại Tag nhé,tên chưa phù hợp
+        if (collision.gameObject.CompareTag("DeadLimit"))
         {
             GameController.instance.EndGame();
         }

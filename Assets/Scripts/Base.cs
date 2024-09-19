@@ -72,7 +72,7 @@ public class Base : MonoBehaviour
             else if (isTouch == 2)
             {
                 boxCollider.isTrigger = true;
-                Messenger.Broadcast(EventKey.SETPARENTNULL);
+                Messenger.Broadcast(EventKey.SetParentNull);
                 spriteRenderer.sprite = null;
             }
         }

@@ -1,5 +1,8 @@
 ﻿public enum EventKey
 {
     UPDATE_UI,
-    SETPARENTNULL,
+    SetParentNull,
+    GameOver,
+    OnChangeScore,
+    OnChangeHighScore,
 }
