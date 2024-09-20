@@ -8,6 +8,7 @@ TagManager:
   - WallRight
   - Base
   - EndGame
+  - DeadLimit
   layers:
   - Default
   - TransparentFX
