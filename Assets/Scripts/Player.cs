@@ -3,6 +3,7 @@
 public class Player : MonoBehaviour
 {
     private bool isJumped;
+    private bool canJump;
     private float y;
     private Rigidbody2D rb;
     private int jumpForce;
@@ -10,12 +11,12 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        Messenger.AddListener(EventKey.SetParentNull, SetParentNull); //Tên sự kiện sai convention,khó nhìn
+        Messenger.AddListener(EventKey.SetParentNull, SetParentNull);
     }
 
     private void OnDisable()
     {
-        Messenger.RemoveListener(EventKey.SetParentNull, SetParentNull); // Always remember to remove this listener
+        Messenger.RemoveListener(EventKey.SetParentNull, SetParentNull);
     }
 
     private void Awake()
@@ -27,12 +28,13 @@ public class Player : MonoBehaviour
     private void Start()
     {
         isJumped = false;
+        canJump = true;
         jumpForce = 2;
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && canJump)
         {
             rb.velocity = Vector2.up * jumpForce;
             SetParentNull();
@@ -44,6 +46,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Base"))
         {
+            canJump = true;
             float distance = transform.position.y - CameraController.instance.transform.position.y;
             if (distance < -3f)
             {
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
 
         if (collision.gameObject.CompareTag("DeadLimit"))
         {
-            GameController.instance.EndGame();
+            GameController.Instance.EndGame();
         }
     }
 
@@ -70,12 +73,14 @@ public class Player : MonoBehaviour
         {
             collision.collider.isTrigger = true;
             isJumped = false;
+            canJump = false;
         }
     }
 
     public void SetParentNull()
     {
         transform.SetParent(null);
+        canJump = false;
         anim.SetBool("Jump", true);
     }
 }
