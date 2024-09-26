@@ -7,6 +7,6 @@ public class PanelGameOver : Panel // mỗi panel lại đặt tên cấu trúc 
 { 
     public void OnClickRestartBtn()
     {
-        GameController.instance.ResetScene();
+        GameController.Instance.ResetScene();
     }    
 }
