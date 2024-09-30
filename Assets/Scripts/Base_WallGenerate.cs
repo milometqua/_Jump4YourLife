@@ -61,15 +61,15 @@ public class Base_WallGenerate : MonoBehaviour
         float finalY = finalBase.transform.position.y;
         obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
         obj.transform.rotation = Quaternion.identity;
+        finalBase = obj;
         if (steps)
         {
             GameObject gameObject2 = PoolBase.Instance.GetPool();
             finalY = finalBase.transform.position.y;
-            obj.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
-            obj.transform.rotation = Quaternion.identity;
+            gameObject2.transform.position = new Vector3(Random.Range(-1.36f, 1.36f), finalY -= 3.2f, 0);
+            gameObject2.transform.rotation = Quaternion.identity;
             finalBase = gameObject2;
             steps = false;
         }
-        else finalBase = obj;
     }
 }
