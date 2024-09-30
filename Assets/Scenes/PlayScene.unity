@@ -850,7 +850,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 12
   m_TargetDisplay: 0
 --- !u!224 &642790041
 RectTransform:
@@ -987,6 +987,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d229547a143c6fc4aa05e8dae4ea9e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &995318490 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1211408776712785925, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
+  m_PrefabInstance: {fileID: 6063742680555467117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1030859488
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,7 +1222,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.16104737, y: -0.6550182}
+  m_Offset: {x: -0.15404235, y: -0.69895875}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1228,7 +1233,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.42924267, y: 0.065519094}
+  m_Size: {x: 0.40249625, y: 0.051509142}
   m_EdgeRadius: 0
 --- !u!50 &1481697602
 Rigidbody2D:
@@ -1245,7 +1250,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1269,6 +1274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44212a21594280f49b9bf5f4eaba3179, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  perfectAnim: {fileID: 995318490}
 --- !u!212 &1481697604
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1309,7 +1315,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 4
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

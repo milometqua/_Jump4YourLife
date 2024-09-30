@@ -4,10 +4,12 @@ public class Player : MonoBehaviour
 {
     private bool isJumped;
     private bool canJump;
+    private bool perfect;
     private float y;
     private Rigidbody2D rb;
     private int jumpForce;
     private Animator anim;
+    [SerializeField] private Animator perfectAnim;
 
     private void OnEnable()
     {
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         isJumped = false;
         canJump = true;
         jumpForce = 2;
+        perfect = false;
+        perfectAnim.SetBool("Perfect", false);
     }
 
     private void Update()
@@ -48,12 +52,26 @@ public class Player : MonoBehaviour
         {
             canJump = true;
             float distance = transform.position.y - CameraController.instance.transform.position.y;
+            Debug.Log(distance);
             if (distance < -3f)
             {
                 Base_WallGenerate.instance.steps = true;
-                ScoreManager.AddScore(2);
+                if (perfect)
+                {
+                    ScoreManager.AddScore(4);
+                    perfectAnim.SetBool("Perfect", true);
+                }
+                else ScoreManager.AddScore(2);
             }
-            else ScoreManager.AddScore(1);
+            else
+            {
+                if (perfect)
+                {
+                    ScoreManager.AddScore(2);
+                    perfectAnim.SetBool("Perfect", true);
+                }
+                else ScoreManager.AddScore(1);
+            }
             Base_WallGenerate.instance.Generate();
             CameraController.instance.Move();
             //GameController.instance.ShowScore(distance);
@@ -77,10 +95,20 @@ public class Player : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        perfect = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        perfect = false;
+        //perfectAnim.SetBool("Perfect", false);
+    }
     public void SetParentNull()
     {
         transform.SetParent(null);
         canJump = false;
-        anim.SetBool("Jump", true);
+        anim.SetBool("Jump", true) ;
     }
 }
