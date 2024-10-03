@@ -8,7 +8,7 @@ public class HighScoreView : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreTxt;
     private void Start()
     {
-        scoreTxt.text = PlayerPrefs.GetInt("", 0).ToString();
+        scoreTxt.text = PlayerPrefs.GetInt("HighScore", 0).ToString();
     }
     private void OnEnable()
     {
@@ -19,11 +19,10 @@ public class HighScoreView : MonoBehaviour
     private void OnChangeHighScore()
     {
         Debug.Log("Da cap nhat diem cao");
-        if (ScoreManager.Score > PlayerPrefs.GetInt(""))
+        if (ScoreManager.highScore > PlayerPrefs.GetInt("HighScore"))
         {
-            //Debug.Log("Da cap nhat diem cao");
-            PlayerPrefs.SetInt("", ScoreManager.Score);
-            scoreTxt.SetText(ScoreManager.Score.ToString());
+            PlayerPrefs.SetInt("HighScore", ScoreManager.highScore);
+            scoreTxt.SetText(ScoreManager.highScore.ToString());
         }
     }
 
