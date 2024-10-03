@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common;
+using UnityEngine;
 
 public class Player : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private int jumpForce;
     private Animator anim;
-    [SerializeField] private Animator perfectAnim;
 
     private void OnEnable()
     {
@@ -33,12 +33,11 @@ public class Player : MonoBehaviour
         canJump = true;
         jumpForce = 2;
         perfect = false;
-        perfectAnim.SetBool("Perfect", false);
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && canJump)
+        if (Input.GetMouseButtonDown(0) && canJump && !UIHelper.IsMouseOverUI())
         {
             rb.velocity = Vector2.up * jumpForce;
             SetParentNull();
@@ -59,7 +58,7 @@ public class Player : MonoBehaviour
                 if (perfect)
                 {
                     ScoreManager.AddScore(4);
-                    perfectAnim.SetBool("Perfect", true);
+                    GameController.Instance.OnPerfect();
                 }
                 else ScoreManager.AddScore(2);
             }
@@ -68,13 +67,12 @@ public class Player : MonoBehaviour
                 if (perfect)
                 {
                     ScoreManager.AddScore(2);
-                    perfectAnim.SetBool("Perfect", true);
+                    GameController.Instance.OnPerfect();
                 }
                 else ScoreManager.AddScore(1);
             }
             Base_WallGenerate.instance.Generate();
             CameraController.instance.Move();
-            //GameController.instance.ShowScore(distance);
             transform.parent = collision.transform;
             anim.SetBool("Jump", false);
         }
@@ -103,7 +101,7 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         perfect = false;
-        //perfectAnim.SetBool("Perfect", false);
+        GameController.Instance.OffPerfect();
     }
     public void SetParentNull()
     {
