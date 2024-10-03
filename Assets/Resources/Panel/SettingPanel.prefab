@@ -820,7 +820,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1726116712788491774}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 392182923677871308}
+        m_TargetAssemblyTypeName: SettingPanel, Assembly-CSharp
+        m_MethodName: CloseSettingPanel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &9097662974127157738
 GameObject:
   m_ObjectHideFlags: 0
@@ -832,6 +844,7 @@ GameObject:
   - component: {fileID: 8845341731628375945}
   - component: {fileID: 4878522438066412082}
   - component: {fileID: 2935956092212959115}
+  - component: {fileID: 392182923677871308}
   m_Layer: 5
   m_Name: SettingPanel
   m_TagString: Untagged
@@ -899,3 +912,16 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &392182923677871308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9097662974127157738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d48415f5cae4cf4f84ce9ba9db3d852, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyOnClose: 1

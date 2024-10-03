@@ -4,5 +4,8 @@ using UnityEngine;
 
 public class SettingPanel : Panel
 {
-    
+    public void CloseSettingPanel()
+    {
+        PanelManager.Instance.CloseAll();
+    }
 }

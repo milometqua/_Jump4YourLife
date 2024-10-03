@@ -53,7 +53,8 @@ public class PanelManager : Singleton<PanelManager>
     }
     public void CloseAll()
     {
-        foreach (var panel in panels.Values)
+        List<Panel> panelList = new List<Panel>(panels.Values);
+        foreach (var panel in panelList)
         {
             panel.Close();
         }
