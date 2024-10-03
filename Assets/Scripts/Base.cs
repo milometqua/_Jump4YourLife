@@ -34,7 +34,7 @@ public class Base : MonoBehaviour
         float x = transform.position.x;
         if (x >= limitX)
             director = Vector3.left;
-        else if (x <= -limitX) //kì nhỉ :((
+        else if (x <= -limitX)
             director = Vector3.right;
         Vector3 viewportPosition = mainCamera.WorldToViewportPoint(transform.position);
         if (viewportPosition.y > 1f)
@@ -59,7 +59,11 @@ public class Base : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
             isTouch = 0;
+            canBreak = false;
+        }
+            
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -70,7 +74,6 @@ public class Base : MonoBehaviour
             {
                 isTouch++;
             }
-
             if (isTouch == 1)
             {
                 spriteRenderer.sprite = breakIce;
@@ -80,6 +83,7 @@ public class Base : MonoBehaviour
                 boxCollider.isTrigger = true;
                 Messenger.Broadcast(EventKey.SetParentNull);
                 spriteRenderer.sprite = null;
+                canBreak = false;
                 isTouch = 0;
             }
         }
