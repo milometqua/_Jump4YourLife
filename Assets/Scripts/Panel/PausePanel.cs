@@ -17,4 +17,14 @@ public class PausePanel : Panel
         Time.timeScale = 1.0f;
         PanelManager.Instance.CloseAll();
     }
+
+    public void LoadMenuScene()
+    {
+        GameController.Instance.LoadMenuScene();
+    }
+
+    public void ReloadScene()
+    {
+        GameController.Instance.ResetScene();
+    }
 }
