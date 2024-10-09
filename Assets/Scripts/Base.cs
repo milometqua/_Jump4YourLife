@@ -51,8 +51,9 @@ public class Base : MonoBehaviour
         transform.position += director * speed * Time.deltaTime;
     }
 
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("Vua cham");
         if (collision.gameObject.CompareTag("Player"))
             canBreak = true;
     }
