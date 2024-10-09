@@ -12,6 +12,7 @@ public class SettingPanel : Panel
 
     private int isMusicPlaying;
     private int isSFXPlaying;
+    private string gitHubLink = "https://github.com/milometqua";
     public void CloseSettingPanel()
     {
         PanelManager.Instance.CloseAll();
@@ -84,5 +85,10 @@ public class SettingPanel : Panel
         }
         PlayerPrefs.SetInt("IsSFXPlaying", isSFXPlaying);
         PlayerPrefs.Save();
+    }
+
+    public void OpenGitHub()
+    {
+        Application.OpenURL(gitHubLink);
     }
 }
