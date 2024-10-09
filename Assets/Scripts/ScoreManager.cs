@@ -4,11 +4,9 @@ using UnityEngine;
 public class ScoreManager : Singleton<ScoreManager>
 {
     public static int Score;
-    public static int highScore;
     private void Start()
     {
         SetScore(-1);
-        highScore = 0;
     }
     public static void AddScore(int amount)
     {
@@ -25,10 +23,10 @@ public class ScoreManager : Singleton<ScoreManager>
 
     public static void UpdateHighScore()
     {
-        if (Score > highScore)
+        if (Score > PlayerPrefs.GetInt("HighScore"))
         {
-            highScore = Score;
-            Debug.Log(highScore);
+            PlayerPrefs.SetInt("HighScore", Score);
+            //Messenger.Broadcast(EventKey.OnChangeHighScore);
         }
     }
 }

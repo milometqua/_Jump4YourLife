@@ -16,12 +16,13 @@ public class HighScoreView : MonoBehaviour
 
     private void OnChangeHighScore()
     {
-        Debug.Log("Da cap nhat diem cao");
+        /*Debug.Log("Da cap nhat diem cao");
         if (ScoreManager.highScore > PlayerPrefs.GetInt("HighScore"))
         {
             PlayerPrefs.SetInt("HighScore", ScoreManager.highScore);
             scoreTxt.SetText(ScoreManager.highScore.ToString());
-        }
+        }*/
+        scoreTxt.SetText(PlayerPrefs.GetInt("HighScore").ToString());
     }
 
     private void OnDisable()
