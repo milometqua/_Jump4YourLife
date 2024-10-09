@@ -13,7 +13,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Background
   - Water
   - UI
   - Pause
@@ -48,4 +48,10 @@ TagManager:
     locked: 0
   - name: Pause
     uniqueID: 3534059099
+    locked: 0
+  - name: Countdown
+    uniqueID: 3097882879
+    locked: 0
+  - name: Background
+    uniqueID: 4146602815
     locked: 0

@@ -538,6 +538,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   perfect: {fileID: 1335478467}
+  taptap: {fileID: 1063252548}
+  countdown: {fileID: 1798681357}
 --- !u!4 &466254167
 Transform:
   m_ObjectHideFlags: 0
@@ -1294,6 +1296,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1063252548 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1527622566224081535, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
+  m_PrefabInstance: {fileID: 6063742680555467117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1140487275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1766,6 +1773,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1798681357 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2880636052369210976, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
+  m_PrefabInstance: {fileID: 6063742680555467117}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813450134
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,6 +2279,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1052712512474111380, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2880636052369210976, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3973696452259156100, guid: e749ec36712fbee4c9e9e7d326da80cd, type: 3}
