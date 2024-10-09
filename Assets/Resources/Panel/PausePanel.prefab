@@ -212,6 +212,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyOnClose: 1
+  musicOff: {fileID: -1843006209, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  musicOn: {fileID: 589596785, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  SFXOff: {fileID: -1276201821, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  SFXOn: {fileID: 88986170, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  musicBtn: {fileID: 6120679000091359895}
+  SFXBtn: {fileID: 5955246173456706562}
 --- !u!114 &3295343178634226177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +368,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7722000982591753789}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8910929211167768450}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
+        m_MethodName: ToggleTheSFX
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &4131487143523612592
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,7 +540,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6365863587996382335}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8910929211167768450}
+        m_TargetAssemblyTypeName: PausePanel, Assembly-CSharp
+        m_MethodName: ToggleTheMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &5913024619801614439
 GameObject:
   m_ObjectHideFlags: 0

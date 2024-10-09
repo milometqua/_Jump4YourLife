@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && canJump && !UIHelper.IsMouseOverUI())
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
             rb.velocity = Vector2.up * jumpForce;
             SetParentNull();
             isJumped = true;

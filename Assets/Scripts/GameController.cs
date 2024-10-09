@@ -1,6 +1,4 @@
 using Microsoft.Unity.VisualStudio.Editor;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +26,7 @@ public class GameController : Singleton <GameController>
     }
     public void EndGame()
     {
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.gameOver);
         ScoreManager.UpdateHighScore();
         Time.timeScale = 0f;
         PanelManager.Instance.OpenPanel("ShadePanel");

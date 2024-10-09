@@ -5,6 +5,7 @@ public class Base : MonoBehaviour
     [SerializeField] private float speed;
     [SerializeField] private Sprite breakIce;
     [SerializeField] private Sprite Ice;
+
     private Vector3 director;
     private Camera mainCamera;
     private float limitX;
@@ -76,10 +77,12 @@ public class Base : MonoBehaviour
             }
             if (isTouch == 1)
             {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.breakSound);
                 spriteRenderer.sprite = breakIce;
             }
             else if (isTouch == 2)
             {
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.breakSound);
                 boxCollider.isTrigger = true;
                 Messenger.Broadcast(EventKey.SetParentNull);
                 spriteRenderer.sprite = null;
