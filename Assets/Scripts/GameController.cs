@@ -1,13 +1,21 @@
 using Microsoft.Unity.VisualStudio.Editor;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameController : Singleton <GameController>
 {
     public GameObject perfect;
+    public GameObject taptap;
+    public GameObject countdown;
+
+    private Animator animatorCountdown;
+
     private void Start()
     {
         Time.timeScale = 1.0f;
+        OffCountdown();
+        animatorCountdown = countdown.GetComponent<Animator>();
     }
 
     public void PauseGame()
@@ -19,10 +27,17 @@ public class GameController : Singleton <GameController>
 
     public void ContinueGame()
     {
-        Time.timeScale = 1f;
-        PanelManager.Instance.CloseAll();
-        /*PanelManager.Instance.ClosePanel("ShadePanel");
-        PanelManager.Instance.ClosePanel("PausePanel");*/
+        StartCoroutine(Countdown());
+    }
+
+    IEnumerator Countdown()
+    {
+        OnCountdown();
+        animatorCountdown.updateMode = AnimatorUpdateMode.UnscaledTime;
+        animatorCountdown.Play("Countdown");
+        yield return new WaitForSecondsRealtime(3f);
+        Time.timeScale = 1.0f;
+        OffCountdown();
     }
     public void EndGame()
     {
@@ -70,5 +85,25 @@ public class GameController : Singleton <GameController>
     public void OffPerfect()
     {
         perfect.SetActive(false);
+    }
+
+    public void OnTap()
+    {
+        taptap.SetActive(true);
+    }
+
+    public void OffTap()
+    {
+        taptap.SetActive(false);
+    }
+
+    public void OnCountdown()
+    {
+        countdown.SetActive(true);
+    }
+
+    public void OffCountdown()
+    {
+        countdown.SetActive(false);
     }
 }

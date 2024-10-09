@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -54,10 +56,11 @@ public class PausePanel : Panel
 
     public void ContinueGame()
     {
-        Time.timeScale = 1.0f;
+        GameController.Instance.ContinueGame();
         PanelManager.Instance.CloseAll();
+        //StartCoroutine(Countdown());
+        //Time.timeScale = 1.0f;
     }
-
     public void LoadMenuScene()
     {
         GameController.Instance.LoadMenuScene();
