@@ -33,12 +33,14 @@ public class Player : MonoBehaviour
         canJump = true;
         jumpForce = 2;
         perfect = false;
+        GameController.Instance.OnTap();
     }
 
     private void Update()
     {
         if (Input.GetMouseButtonDown(0) && canJump && !UIHelper.IsMouseOverUI())
         {
+            GameController.Instance.OffTap();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.jump);
             rb.velocity = Vector2.up * jumpForce;
             SetParentNull();
