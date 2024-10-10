@@ -18,13 +18,13 @@ public class Wall : MonoBehaviour
         if (viewportPosition.y > 1.8f)
         {
             posY = Base_WallGenerate.instance.finalWallY;
-            if (gameObject.CompareTag("WallLeft"))
+            if (gameObject.CompareTag("WallRight"))
             {
                 Base_WallGenerate.instance.numWallOutCam++;
                 transform.position = new Vector3(2.23f, posY, 0f);
             }
 
-            if (gameObject.CompareTag("WallRight"))
+            if (gameObject.CompareTag("WallLeft"))
             {
                 Base_WallGenerate.instance.numWallOutCam++;
                 transform.position = new Vector3(-2.23f, posY, 0f);

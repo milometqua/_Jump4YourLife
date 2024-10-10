@@ -37,8 +37,8 @@ public class Base_WallGenerate : MonoBehaviour
     {
         for (int i = 0; i < amountWall; i++)
         {
-            Instantiate(WallLeft, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0));
-            Instantiate(WallRight, new Vector3(-2.23f, firstPosY, 0f), Quaternion.identity);
+            Instantiate(WallRight, new Vector3(2.23f, firstPosY, 0f), new Quaternion(0, 180, 0, 0));
+            Instantiate(WallLeft, new Vector3(-2.23f, firstPosY, 0f), Quaternion.identity);
             firstPosY -= 10.41f;
             if (i == amountWall - 1)
             {

@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
         {
             canJump = true;
             float distance = transform.position.y - CameraController.instance.transform.position.y;
-            Debug.Log(distance);
+            //Debug.Log(distance);
             if (distance < -3f)
             {
                 Base_WallGenerate.instance.steps = true;

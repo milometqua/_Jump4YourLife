@@ -48,9 +48,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c25066911a50f814aabae788fee4692f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1.5
   breakIce: {fileID: -449481176, guid: 7c9b8620efd9a1b43ac522ab100ce965, type: 3}
   Ice: {fileID: -258242008, guid: 7c9b8620efd9a1b43ac522ab100ce965, type: 3}
+  invisibleSpeed: 0.7
 --- !u!212 &3682553915362643749
 SpriteRenderer:
   m_ObjectHideFlags: 0
