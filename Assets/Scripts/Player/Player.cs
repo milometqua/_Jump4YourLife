@@ -52,6 +52,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Base"))
         {
+            Debug.Log(transform.position.y);
             canJump = true;
             float distance = transform.position.y - CameraController.instance.transform.position.y;
             //Debug.Log(distance);
@@ -75,7 +76,7 @@ public class Player : MonoBehaviour
                 else ScoreManager.AddScore(1);
             }
             Base_WallGenerate.instance.Generate();
-            CameraController.instance.Move();
+            CameraController.instance.Move(transform.position.y);
             transform.parent = collision.transform;
             anim.SetBool("Jump", false);
         }
@@ -88,7 +89,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Base") && isJumped)
+        if ((collision.gameObject.CompareTag("Base")|| collision.gameObject.CompareTag("FirstBase")) && isJumped)
         {
             collision.collider.isTrigger = true;
             isJumped = false;
@@ -111,5 +112,6 @@ public class Player : MonoBehaviour
         transform.SetParent(null);
         canJump = false;
         anim.SetBool("Jump", true) ;
+        Debug.Log(anim.GetBool("Jump"));
     }
 }

@@ -7,6 +7,7 @@ public class PlayerInfors : ScriptableObject
 {
     [SerializeField] private Sprite spriteImage;
     [SerializeField] private Sprite spriteImageView;
+    [SerializeField] private GameObject player;
     [SerializeField] private int id;
     [SerializeField] private string namePlayer;
 
@@ -27,6 +28,11 @@ public class PlayerInfors : ScriptableObject
     public string NamePlayer
     {
         get { return namePlayer; }
+    }
+
+    public GameObject Player
+    {
+        get { return player; }
     }
     private void OnValidate()
     {

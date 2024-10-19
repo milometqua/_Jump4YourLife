@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteImage: {fileID: -78793480, guid: 0606abc0e4bee584d9a4b5e123bd0940, type: 3}
   spriteImageView: {fileID: -1922506822, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  player: {fileID: 949684837269505812, guid: 783d74267a112484482c1ee3eaeb1923, type: 3}
   id: 10
   namePlayer: Evil

@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteImage: {fileID: -1329860251, guid: de917c42bbd7b504a859616edd4ddfae, type: 3}
   spriteImageView: {fileID: -308889576, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  player: {fileID: 3268310489528820605, guid: b295e64b9986b4e469fac9915f8db0d2, type: 3}
   id: 4
   namePlayer: Mermaid
