@@ -13,26 +13,46 @@ public class ShopPanel : Panel
     }
     #endregion
 
+    [Header("Player")]
     public Image player;
     public GameObject playerPrefab;
-    public Transform content;
-    private int idSelecting;
+    public Transform contentPlayer;
+    private int idSelectingPlayer;
     public TextMeshProUGUI namePlayer;
+
+    [Header("Background")]
+    public GameObject bgPrefab;
+    public Transform contentBg;
+    private int idSelectingBg;
+
 
     [SerializeField] private GameObject BackgroundView;
     [SerializeField] private GameObject PlayerView;
     [SerializeField] private RectTransform contentRectTransform;
+    [SerializeField] private GameObject chooseBg;
+    [SerializeField] private GameObject choosePlayer;
 
+    private void Start()
+    {
+        LoadCurrentAvatar();
+        GenerateAvatar();
+        GenerateBg();
+        LoadCurrentBg();
+    }
     public void OpenScrollBg()
     {
         BackgroundView.SetActive(true);
         PlayerView.SetActive(false);
+        chooseBg.SetActive(true);
+        choosePlayer.SetActive(false);
     }
 
     public void OpenScrollPlayer()
     {
         PlayerView.SetActive(true);
         BackgroundView.SetActive(false);
+        chooseBg.SetActive(false);
+        choosePlayer.SetActive(true);
         SetContentPosY(0);
     }
 
@@ -41,20 +61,25 @@ public class ShopPanel : Panel
         base.Close();
         BackgroundView.SetActive(true);
         PlayerView.SetActive(false);
+        chooseBg.SetActive(true);
+        choosePlayer.SetActive(false);
     }
 
-    private void Start()
-    {
-        LoadCurrentAvatar();
-        GenerateAvatar();
-    }
     private void LoadCurrentAvatar()
     {
-        idSelecting = PlayerPrefs.GetInt("PlayerId", 5);
-        Debug.Log(idSelecting);
-        PlayerInfors playerInfors = Resources.Load<PlayerInfors>("Player/" + idSelecting);
+        idSelectingPlayer = PlayerPrefs.GetInt("PlayerId", 1);
+        Debug.Log(idSelectingPlayer);
+        PlayerInfors playerInfors = Resources.Load<PlayerInfors>("Player/" + idSelectingPlayer);
         player.sprite = playerInfors.SpriteImage;
+        namePlayer.SetText(playerInfors.NamePlayer);
+    }
 
+    private void LoadCurrentBg()
+    {
+        idSelectingBg = PlayerPrefs.GetInt("BackgroundId", 1);
+        Debug.Log(idSelectingBg);
+        BackgroundInfos backgroundInfors = Resources.Load<BackgroundInfos>("Backgrounds/" + idSelectingBg);
+        //player.sprite = playerInfors.SpriteImage;
     }
 
     private void GenerateAvatar()
@@ -63,9 +88,20 @@ public class ShopPanel : Panel
         Debug.Log(playerLists.Length);
         foreach (PlayerInfors player in playerLists)
         {
-            var obj = Instantiate(playerPrefab, content);
+            var obj = Instantiate(playerPrefab, contentPlayer);
             obj.GetComponent<PlayerButton>().Init(player);
             Debug.Log(player.name);
+        }
+    }
+
+    private void GenerateBg()
+    {
+        BackgroundInfos[] bgLists = Resources.LoadAll<BackgroundInfos>("Backgrounds");
+        Debug.Log(bgLists.Length);
+        foreach (BackgroundInfos background in bgLists)
+        {
+            var obj = Instantiate(bgPrefab, contentBg);
+            obj.GetComponent<BackgroundButton>().Init(background);
         }
     }
     private void SetContentPosY(float newY)
@@ -77,8 +113,16 @@ public class ShopPanel : Panel
 
     public void ChangePlayer(PlayerInfors playerInfors)
     {
-        idSelecting = playerInfors.Id;
+        idSelectingPlayer = playerInfors.Id;
         player.sprite = playerInfors.SpriteImage;
         namePlayer.text = playerInfors.NamePlayer;
+        PlayerPrefs.SetInt("PlayerId", idSelectingPlayer);
+    }
+
+    public void ChangeBackground(BackgroundInfos backgroundInfos)
+    {
+        idSelectingBg = backgroundInfos.Id;
+        PlayerPrefs.SetInt("BackgroundId", idSelectingBg);
+        //background.sprite = backgroundInfos.BackgroundIcon;
     }
 }

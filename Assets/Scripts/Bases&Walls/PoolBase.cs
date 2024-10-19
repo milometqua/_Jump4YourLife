@@ -16,8 +16,10 @@ public class PoolBase : MonoBehaviour
         {
             Instance = this;
         }
-
+        int id = PlayerPrefs.GetInt("BackgroundId");
+        Base.GetComponent<SpriteRenderer>().sprite = Resources.Load<BackgroundInfos>("Backgrounds/" + id).Bases;
         Init();
+
     }
 
     private void Init()

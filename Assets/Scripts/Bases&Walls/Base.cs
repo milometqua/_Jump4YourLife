@@ -30,6 +30,9 @@ public class Base : MonoBehaviour
 
     private void Start()
     {
+        int id = PlayerPrefs.GetInt("BackgroundId");
+        breakIce = Resources.Load<BackgroundInfos>("Backgrounds/" + id).BreakBases;
+        Ice = Resources.Load<BackgroundInfos>("Backgrounds/" + id).Bases;
         speed = 2f;
         int randomValue = UnityEngine.Random.Range(0, 2);
         if (randomValue == 0)
@@ -106,9 +109,11 @@ public class Base : MonoBehaviour
             gameObject.SetActive(false);
             transform.localScale = Vector3.one;
             angle = 0f;
-            type = 0;
+            KindOfBase();
             Color color = spriteRenderer.color;
             color.a = 1f;
+            spriteRenderer.color = color;
+            invisibleSpeed = Math.Abs(invisibleSpeed);
         }
     }
 
@@ -132,8 +137,20 @@ public class Base : MonoBehaviour
     private void Blur()
     {
         Color color = spriteRenderer.color;
-        if (spriteRenderer.color.a >= 1f) invisibleSpeed = -Math.Abs(invisibleSpeed);
-        else if (spriteRenderer.color.a <= 0f) invisibleSpeed = Math.Abs(invisibleSpeed);
+        if (spriteRenderer.color.a >= 1f)
+        {
+            Color tmp = spriteRenderer.color;
+            tmp.a = 1f;
+            spriteRenderer.color = tmp;
+            invisibleSpeed = -Math.Abs(invisibleSpeed);
+        }
+        else if (spriteRenderer.color.a <= 0f)
+        {
+            Color tmp = spriteRenderer.color;
+            tmp.a = 0f;
+            spriteRenderer.color = tmp;
+            invisibleSpeed = Math.Abs(invisibleSpeed);
+        }
         color.a += invisibleSpeed * Time.deltaTime;
         spriteRenderer.color = color;
     }
@@ -173,6 +190,11 @@ public class Base : MonoBehaviour
             canBreak = true;
     }
 
+    /*private void OnCollisionStay2D(Collision2D collision)
+    {
+        Debug.Log(type);
+        Debug.Log(spriteRenderer.color.a);
+    }*/
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

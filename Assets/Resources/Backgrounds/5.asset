@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63809bce082eaf14e963741fe3591063, type: 3}
+  m_Name: 5
+  m_EditorClassIdentifier: 
+  backgroundIcon: {fileID: -1523991233, guid: 99a37e6dd7de65848a9c828a4bb7d74a, type: 3}
+  background: {fileID: -1895320890, guid: 725e6ecff6bdb9441953733ac767bf1f, type: 3}
+  bases: {fileID: 2122703830, guid: 7c9b8620efd9a1b43ac522ab100ce965, type: 3}
+  breakBases: {fileID: -1820767685, guid: 7c9b8620efd9a1b43ac522ab100ce965, type: 3}
+  wall: {fileID: -88080726, guid: 7c9b8620efd9a1b43ac522ab100ce965, type: 3}
+  id: 5

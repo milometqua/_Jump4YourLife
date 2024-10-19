@@ -25,6 +25,10 @@ public class Base_WallGenerate : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Sinh base");
+        int id = PlayerPrefs.GetInt("BackgroundId");
+        Debug.Log(id);
+        basePrefab.GetComponent<SpriteRenderer>().sprite = Resources.Load<BackgroundInfos>("Backgrounds/" + id).Bases;
         steps = false;
         posY_Base = 2.08f;
         firstPosY = 3f;
