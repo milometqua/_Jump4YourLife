@@ -283,6 +283,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
   perfect: {fileID: 0}
+  taptap: {fileID: 0}
+  countdown: {fileID: 0}
 --- !u!4 &255077154
 Transform:
   m_ObjectHideFlags: 0
@@ -1287,6 +1289,7 @@ GameObject:
   - component: {fileID: 1895576426}
   - component: {fileID: 1895576425}
   - component: {fileID: 1895576424}
+  - component: {fileID: 1895576427}
   m_Layer: 5
   m_Name: Play
   m_TagString: Untagged
@@ -1407,6 +1410,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1895576422}
   m_CullTransparentMesh: 1
+--- !u!95 &1895576427
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895576422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 077a6c319ec5ecf4eb8c22c6c034cad9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1973321367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1824,6 +1848,7 @@ GameObject:
   - component: {fileID: 2033794480}
   - component: {fileID: 2033794482}
   - component: {fileID: 2033794481}
+  - component: {fileID: 2033794483}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1888,6 +1913,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2033794479}
   m_CullTransparentMesh: 1
+--- !u!95 &2033794483
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2033794479}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b50c999e1a3bc5c4f991bdb8628bf05c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
