@@ -6,7 +6,7 @@ public class ScoreManager : Singleton<ScoreManager>
     public static int Score;
     private void Start()
     {
-        SetScore(-1);
+        SetScore(0);
     }
     public static void AddScore(int amount)
     {

@@ -9,6 +9,7 @@ TagManager:
   - Base
   - EndGame
   - DeadLimit
+  - FirstBase
   layers:
   - Default
   - TransparentFX
@@ -54,4 +55,7 @@ TagManager:
     locked: 0
   - name: Background
     uniqueID: 4146602815
+    locked: 0
+  - name: overlayUI
+    uniqueID: 3670386155
     locked: 0

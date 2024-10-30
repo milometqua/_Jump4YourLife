@@ -14,7 +14,9 @@ public class GameController : Singleton <GameController>
     private void Start()
     {
         Time.timeScale = 1.0f;
+        Application.targetFrameRate = 60;
         OffCountdown();
+        OffPerfect();
         animatorCountdown = countdown.GetComponent<Animator>();
     }
 
@@ -46,7 +48,7 @@ public class GameController : Singleton <GameController>
         Time.timeScale = 0f;
         PanelManager.Instance.OpenPanel("ShadePanel");
         PanelManager.Instance.OpenPanel("GameOverPanel");
-        ScoreManager.Score = -1;
+        ScoreManager.Score = 0;
     }
 
     public void OpenSettingPanel()
@@ -60,8 +62,8 @@ public class GameController : Singleton <GameController>
     }
     public void LoadGameScene()
     {
-        SceneManager.LoadSceneAsync("PlayScene");
-        ScoreManager.Score = -1;
+        SceneManager.LoadScene("PlayScene");
+        ScoreManager.Score = 0;
     }
     public void LoadMenuScene()
     {
@@ -74,7 +76,7 @@ public class GameController : Singleton <GameController>
         Debug.Log("Reset");
         ScoreManager.UpdateHighScore();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        ScoreManager.Score = -1;
+        ScoreManager.Score = 0;
     }
 
     public void OnPerfect()
