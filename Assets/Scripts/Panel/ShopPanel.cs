@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -24,6 +25,7 @@ public class ShopPanel : Panel
     public GameObject bgPrefab;
     public Transform contentBg;
     private int idSelectingBg;
+    private List<GameObject> _bgPrefabs = new List<GameObject>();
 
 
     [SerializeField] private GameObject BackgroundView;
@@ -102,6 +104,7 @@ public class ShopPanel : Panel
         {
             var obj = Instantiate(bgPrefab, contentBg);
             obj.GetComponent<BackgroundButton>().Init(background);
+            _bgPrefabs.Add(obj);
         }
     }
     private void SetContentPosY(float newY)
@@ -117,6 +120,19 @@ public class ShopPanel : Panel
         player.sprite = playerInfors.SpriteImage;
         namePlayer.text = playerInfors.NamePlayer;
         PlayerPrefs.SetInt("PlayerId", idSelectingPlayer);
+    }
+
+    public void SetOriginBtn()
+    {
+        foreach (GameObject theme in _bgPrefabs)
+        {
+            BackgroundInfos obj = theme.GetComponent<BackgroundButton>().backgroundInfos;
+            if (PlayerPrefs.GetInt("BackgroundId").Equals(obj.Id))
+            {
+                theme.GetComponent<BackgroundButton>().SetBtnUnselected();
+                break;
+            }
+        }
     }
 
     public void ChangeBackground(BackgroundInfos backgroundInfos)
