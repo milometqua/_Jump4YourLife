@@ -5,7 +5,7 @@ public class CameraController : MonoBehaviour
 {
     public static CameraController instance;
 
-    [SerializeField] private GameObject Player;
+    //private GameObject Player;
 
     private float smooth;
     private float range;
@@ -19,9 +19,10 @@ public class CameraController : MonoBehaviour
         }
     }
 
-    public void Move()
+    public void Move(float posY)
     {
-        playerPos_y = Player.GetComponent<Player>().transform.position.y;
+        playerPos_y = posY;
+        Debug.Log(playerPos_y);
         range = transform.position.y;
         StartCoroutine(MoveSmooth());
     }
